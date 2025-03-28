@@ -4,16 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chic &amp; Co. Hair &amp; Wig Studio</title>
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+  
+  <!-- Paystack Inline Script -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  
   <style>
-    /* Base Reset and Global Styles */
+    /* ===== Global Styles ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     html { font-size: 16px; }
     body {
@@ -23,8 +33,8 @@
       line-height: 1.6;
     }
     a { text-decoration: none; color: inherit; }
-    
-    /* Color Palette & Typography */
+
+    /* ===== Color Palette & Typography ===== */
     :root {
       --primary-color: #B22222;
       --accent-color: #FFD700;
@@ -32,8 +42,8 @@
       --light-bg: #fff;
       --serif-font: 'Playfair Display', serif;
     }
-    
-    /* Navbar */
+
+    /* ===== Navbar ===== */
     nav {
       position: fixed;
       top: 0;
@@ -66,12 +76,12 @@
       nav { padding: 10px 20px; flex-wrap: wrap; }
       nav ul { width: 100%; justify-content: center; margin-top: 10px; }
     }
-    
-    /* Hero Section – Fullscreen Background */
+
+    /* ===== Hero Section ===== */
     .hero {
+      position: relative;
       height: 100vh;
       background: url('herowig.jpg') center/cover no-repeat;
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -113,8 +123,8 @@
       transition: transform 0.3s;
     }
     .hero-content .btn:hover { transform: scale(1.05); }
-    
-    /* Section Titles */
+
+    /* ===== Section Titles ===== */
     .section-title {
       text-align: center;
       font-size: 2.5em;
@@ -130,9 +140,12 @@
       margin: 15px auto 0;
       border-radius: 2px;
     }
-    
-    /* About Section */
-    .about { padding: 60px 20px; background: var(--light-bg); }
+
+    /* ===== About Section ===== */
+    .about {
+      padding: 60px 20px;
+      background: var(--light-bg);
+    }
     .about-container {
       max-width: 1100px;
       margin: auto;
@@ -146,46 +159,47 @@
       flex: 1 1 500px;
     }
     .about-text h2 { font-size: 2.2em; margin-bottom: 15px; color: var(--primary-color); }
-    .about-text p { font-size: 1.1em; text-align: justify; margin-bottom: 10px; }
-    .about-image { flex: 1 1 400px; }
+    .about-text p { font-size: 1.1em; text-align: justify; margin-bottom: 15px; }
+    .about-extra-info { font-size: 1em; color: #555; margin-top: 15px; }
+    .about-image { flex: 1 1 400px; text-align: center; }
     .about-image img {
       width: 100%;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
-    
-    /* Services Section */
-    .services { padding: 60px 20px; background: #fafafa; }
-    .services-container {
+
+    /* ===== How It Works Section ===== */
+    .how-it-works {
+      background: #fafafa;
+      padding: 60px 20px;
+    }
+    .how-container {
       max-width: 1000px;
       margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 30px;
+      justify-content: center;
+      text-align: center;
     }
-    .service-item {
+    .step {
+      flex: 1 1 250px;
       background: var(--light-bg);
       padding: 20px;
       border-radius: 10px;
-      text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
     }
-    .service-item:hover { transform: translateY(-5px); }
-    .service-item i {
-      font-size: 3em;
-      color: var(--accent-color);
-      margin-bottom: 15px;
+    .step:hover { transform: translateY(-5px); }
+    .step i { font-size: 3em; color: var(--accent-color); margin-bottom: 15px; }
+    .step h3 { font-size: 1.4em; color: var(--primary-color); margin-bottom: 10px; }
+    .step p { font-size: 1em; color: #555; }
+
+    /* ===== Wig Boutique Section ===== */
+    .wig-shop {
+      padding: 60px 20px;
+      background: var(--light-bg);
     }
-    .service-item h3 {
-      font-size: 1.4em;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    .service-item p { font-size: 1em; color: #666; }
-    
-    /* Wig Boutique Section */
-    .wig-shop { padding: 60px 20px; background: var(--light-bg); }
     .wig-shop h2 { text-align: center; margin-bottom: 40px; color: var(--primary-color); }
     .wig-container {
       max-width: 1200px;
@@ -223,9 +237,12 @@
       transition: background 0.3s;
     }
     .wig-item .btn:hover { background: #8a1616; }
-    
-    /* Appointment Section */
-    .appointment { padding: 60px 20px; background: #f9f9f9; }
+
+    /* ===== Appointment Section ===== */
+    .appointment {
+      padding: 60px 20px;
+      background: #f9f9f9;
+    }
     .appointment h2 { text-align: center; margin-bottom: 40px; color: var(--primary-color); }
     .appointment-form {
       max-width: 600px;
@@ -258,10 +275,14 @@
       transition: background 0.3s;
     }
     .appointment-form button:hover { background: #8a1616; }
-    
-    /* Contact Section */
-    .contact { padding: 60px 20px; background: var(--light-bg); }
-    .contact h2 { text-align: center; margin-bottom: 40px; color: var(--primary-color); }
+
+    /* ===== Contact Section ===== */
+    .contact {
+      padding: 60px 20px;
+      background: var(--light-bg);
+      text-align: center;
+    }
+    .contact h2 { margin-bottom: 40px; color: var(--primary-color); }
     .contact-container {
       max-width: 800px;
       margin: auto;
@@ -276,7 +297,7 @@
       background: var(--light-bg);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .contact-info h3, .contact-form h3 {
       color: var(--primary-color);
@@ -303,8 +324,15 @@
       transition: background 0.3s;
     }
     .contact-form button:hover { background: #8a1616; }
-    
-    /* Footer */
+    .social a {
+      color: var(--accent-color);
+      margin: 0 10px;
+      font-size: 1.5em;
+      transition: color 0.3s;
+    }
+    .social a:hover { color: #e6c200; }
+
+    /* ===== Footer ===== */
     footer {
       background: #222;
       color: #ccc;
@@ -315,48 +343,219 @@
     footer a {
       color: var(--accent-color);
       margin: 0 10px;
-      text-decoration: none;
       transition: color 0.3s;
     }
     footer a:hover { color: #e6c200; }
-    
-    /* Responsive Adjustments */
+
+    /* ===== Responsive Adjustments ===== */
     @media (max-width: 768px) {
-      .about-container, .contact-container { flex-direction: column; text-align: center; }
+      .about-container, .contact-container, .how-container {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
   <script>
-    // Optional: Smooth scroll via JS for older browsers (CSS scroll-behavior works in modern browsers)
+    // Scroll to top on page load
+    window.onload = function() {
+      window.scrollTo(0, 0);
+    };
+
     document.addEventListener("DOMContentLoaded", function() {
-      const navLinks = document.querySelectorAll("nav ul li a");
-      navLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
-          if (this.hash) {
-            e.preventDefault();
-            document.querySelector(this.hash).scrollIntoView({ behavior: "smooth" });
+      // Initialize EmailJS with your user ID (replace with your actual ID)
+      if (window.emailjs) {
+        emailjs.init("qmz9hmmrmjlWOziHU");
+      } else {
+        console.error("EmailJS failed to load.");
+      }
+      
+      // Attach event listener to the Paystack button in the preorder form
+      const payButton = document.getElementById("paystack-button");
+      if (payButton) {
+        payButton.addEventListener("click", function(e) {
+          e.preventDefault();
+          if (validateForm()) {
+            initiatePayment();
           }
         });
-      });
+      }
     });
+
+    // Dish prices for individual portions (bulk is fixed at 300 cedis)
+    const dishPrices = {
+      jollof: 100,
+      "rice-pepper": 120,
+      "oil-rice": 75,
+      "special-combo": 150
+    };
+
+    // Submit form data using FormSubmit via fetch
+    function submitFormData() {
+      const form = document.getElementById("preorderForm");
+      const formData = new FormData(form);
+      // Debug: log each field
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ": " + pair[1]);
+      }
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Form submitted successfully");
+        } else {
+          throw new Error("Form submission failed.");
+        }
+      })
+      .catch(error => {
+        console.error("Form submission error:", error);
+        alert("There was an error processing your order. Please try again.");
+      });
+    }
+
+    // Payment integration with Paystack, EmailJS, and FormSubmit
+    function initiatePayment() {
+      const form = document.getElementById('preorderForm');
+      if (!form.checkValidity()) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+      console.log("Payment function triggered");
+      const dish = document.getElementById('dish').value;
+      if (!dish) {
+        alert("Please select a dish.");
+        return;
+      }
+      // Get portion type value: "individual" or "bulk"
+      const portion = document.getElementById('portion').value;
+      let price = dishPrices[dish];
+      if (portion === "bulk") {
+        price = 300;
+      }
+      const amount = price * 100; // convert to pesewas
+
+      let handler = PaystackPop.setup({
+        key: 'pk_test_297586e51710e83d3c159bfe71ff45c7e23411fa', // Replace with your Paystack test key
+        email: document.getElementById('email').value,
+        amount: amount,
+        currency: "GHS",
+        ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+        onClose: function() {
+          alert('Payment cancelled.');
+        },
+        callback: function(response) {
+          console.log("Payment successful", response);
+          sendEmail();
+          submitFormData();
+          // Redirect to success page after payment success
+          window.location.href = 'success.html';
+          form.reset();
+        }
+      });
+      handler.openIframe();
+    }
+
+    // Send email using EmailJS
+    function sendEmail() {
+      const templateParams = {
+        from_name: document.getElementById('name').value,
+        to_email: document.getElementById('email').value,
+        dish: document.getElementById('dish').value,
+        portion: document.getElementById('portion').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        delivery_date: document.getElementById('date').value,
+        delivery_time: document.getElementById('time').value,
+        instructions: document.getElementById('instructions').value
+      };
+      emailjs.send('service_oc02wjy', 'template_caampzn', templateParams)
+        .then(function(response) {
+          console.log('EmailJS SUCCESS!', response.status, response.text);
+        }, function(error) {
+          console.log('EmailJS FAILED...', error);
+        });
+    }
+
+    // Basic form validation
+    function validateForm() {
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const address = document.getElementById("address");
+      const dish = document.getElementById("dish");
+      const portion = document.getElementById("portion");
+      const date = document.getElementById("date");
+      const time = document.getElementById("time");
+
+      let isValid = true;
+      let errorMessages = [];
+
+      const nameVal = name.value.trim();
+      if (!/^\S+\s+\S+/.test(nameVal)) {
+        errorMessages.push("Please enter your FULL NAME (first and last).");
+        isValid = false;
+      }
+
+      const emailVal = email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        errorMessages.push("Please enter a valid email address.");
+        isValid = false;
+      }
+
+      const phoneVal = phone.value.trim();
+      if (!/^\d{10}$/.test(phoneVal)) {
+        errorMessages.push("Please enter a valid 10-digit phone number.");
+        isValid = false;
+      }
+
+      if (address.value.trim() === "") {
+        errorMessages.push("Please enter your residential address.");
+        isValid = false;
+      }
+
+      if (!dish.value) {
+        errorMessages.push("Please select a dish.");
+        isValid = false;
+      }
+      
+      if (!portion.value) {
+        errorMessages.push("Please select a portion type.");
+        isValid = false;
+      }
+
+      if (!isValid) {
+        alert("⚠️ Please fix the following errors before proceeding:\n\n" + errorMessages.join("\n"));
+      }
+      return isValid;
+    }
+
+    // (Optional) Modal functions for dish details (if you want to use modals instead of redirection)
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
   </script>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- ========= Navbar ========= -->
   <nav class="animate__animated animate__fadeInDown">
     <div class="logo animate__animated animate__bounceInLeft">
       <i class="fas fa-cut"></i> Chic &amp; Co.
     </div>
     <ul>
-      <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-      <li><a href="#services"><i class="fas fa-scissors"></i> Services</a></li>
-      <li><a href="#wigshop"><i class="fas fa-shopping-bag"></i> Wig Shop</a></li>
-      <li><a href="#appointment"><i class="fas fa-calendar-check"></i> Book Appointment</a></li>
-      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li><a href="#home" class="animate__animated animate__fadeInDown"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#about" class="animate__animated animate__fadeInDown"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="#services" class="animate__animated animate__fadeInDown"><i class="fas fa-scissors"></i> Services</a></li>
+      <li><a href="#wigshop" class="animate__animated animate__fadeInDown"><i class="fas fa-shopping-bag"></i> Wig Shop</a></li>
+      <li><a href="#appointment" class="animate__animated animate__fadeInDown"><i class="fas fa-calendar-check"></i> Book Appointment</a></li>
+      <li><a href="#contact" class="animate__animated animate__fadeInDown"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
   </nav>
   
-  <!-- Hero Section -->
+  <!-- ========= Hero Section ========= -->
   <section class="hero" id="home">
     <div class="hero-content animate__animated animate__fadeInUp">
       <h1 class="animate__animated animate__jackInTheBox">Experience the Art of Hair</h1>
@@ -370,13 +569,16 @@
     </div>
   </section>
   
-  <!-- About Section -->
+  <!-- ========= About Section ========= -->
   <section class="about" id="about">
     <div class="about-container animate__animated animate__fadeInUp">
       <div class="about-text">
-        <h2>Our Story</h2>
+        <h2>Our Story &amp; Concept</h2>
         <p>
-          At Chic &amp; Co., every hairstyle is crafted with passion and precision. Our expert stylists blend classic techniques with modern trends to create looks that empower and inspire. We believe that great hair is not just a style—it’s a statement of confidence and individuality.
+          At Chic &amp; Co., every hairstyle is crafted with passion and precision. Our expert stylists blend classic techniques with modern trends to create looks that empower and inspire. We believe that great hair is not just a style—it’s a statement of confidence.
+        </p>
+        <p class="about-extra-info">
+          Our commitment: quality, creativity, and personalized care.
         </p>
       </div>
       <div class="about-image">
@@ -385,34 +587,34 @@
     </div>
   </section>
   
-  <!-- Services Section -->
+  <!-- ========= Services Section ========= -->
   <section class="services" id="services">
     <h2 class="section-title animate__animated animate__fadeInDown">Our Services</h2>
     <div class="services-container animate__animated animate__fadeInUp">
       <div class="service-item">
         <i class="fas fa-cut"></i>
         <h3>Haircut &amp; Styling</h3>
-        <p>Customized cuts and styles that perfectly frame your features.</p>
+        <p>Customized cuts and styling that enhance your natural beauty.</p>
       </div>
       <div class="service-item">
         <i class="fas fa-wind"></i>
         <h3>Blow Dry &amp; Finish</h3>
-        <p>Sleek, polished finishes to complement any look.</p>
+        <p>Sleek, polished finishes for any occasion.</p>
       </div>
       <div class="service-item">
         <i class="fas fa-paint-brush"></i>
         <h3>Color &amp; Highlights</h3>
-        <p>Expert color treatments to add vibrancy and depth.</p>
+        <p>Expert color treatments for a vibrant, refreshed look.</p>
       </div>
       <div class="service-item">
         <i class="fas fa-water"></i>
         <h3>Deep Conditioning</h3>
-        <p>Nourishing treatments for revitalized, healthy hair.</p>
+        <p>Nourishing treatments that revitalize your hair.</p>
       </div>
     </div>
   </section>
   
-  <!-- Wig Shop Section -->
+  <!-- ========= Wig Boutique Section ========= -->
   <section class="wig-shop" id="wigshop">
     <h2 class="section-title animate__animated animate__fadeInDown">Wig Boutique</h2>
     <div class="wig-container animate__animated animate__fadeInUp">
@@ -428,7 +630,7 @@
       <div class="wig-item">
         <img src="wig2.jpg" alt="Wig Style 2" />
         <h3>Curly Glam</h3>
-        <p>Vibrant curls that exude confidence and style.</p>
+        <p>Bold curls for a statement of confidence.</p>
         <div class="price">GHS 300</div>
         <button class="btn">Buy Now</button>
       </div>
@@ -436,7 +638,7 @@
       <div class="wig-item">
         <img src="wig3.jpg" alt="Wig Style 3" />
         <h3>Natural Wave</h3>
-        <p>Soft, natural waves for an effortlessly chic look.</p>
+        <p>Soft waves that exude effortless beauty.</p>
         <div class="price">GHS 275</div>
         <button class="btn">Buy Now</button>
       </div>
@@ -444,14 +646,14 @@
       <div class="wig-item">
         <img src="wig4.jpg" alt="Wig Style 4" />
         <h3>Elegant Updo</h3>
-        <p>Classic updos perfect for formal events and celebrations.</p>
+        <p>Classic updos for formal events and celebrations.</p>
         <div class="price">GHS 320</div>
         <button class="btn">Buy Now</button>
       </div>
     </div>
   </section>
   
-  <!-- Appointment Section -->
+  <!-- ========= Appointment Section ========= -->
   <section class="appointment" id="appointment">
     <h2 class="section-title animate__animated animate__fadeInDown">Book an Appointment</h2>
     <div class="appointment-form animate__animated animate__fadeInUp">
@@ -485,15 +687,76 @@
     </div>
   </section>
   
-  <!-- Contact Section -->
+  <!-- ========= Order Section ========= -->
+  <section class="order-section" id="order">
+    <div class="order-form animate__animated animate__fadeInUp">
+      <h2>Place Your Preorder</h2>
+      <div class="order-info">
+        <p><strong>Note:</strong> We operate on select days – please order at least one day in advance.</p>
+        <p>Choose an individual portion (80–90 cedis) or our bulk package (300 cedis) to store and enjoy later.</p>
+      </div>
+      <!-- Hidden _next input ensures redirection to success.html after FormSubmit -->
+      <form id="preorderForm" action="https://formsubmit.co/stephenmensah300@gmail.com" method="POST" onsubmit="event.preventDefault(); initiatePayment();">
+        <input type="hidden" name="_next" value="success.html" />
+  
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Your Name" required />
+  
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+  
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="e.g., +123456789" required />
+  
+        <label for="address">Delivery Address</label>
+        <input type="text" id="address" placeholder="Street, City, ZIP" required />
+  
+        <label for="dish">Select Dish</label>
+        <select id="dish" required>
+          <option value="">-- Choose a Dish --</option>
+          <option value="jollof">Jollof Rice</option>
+          <option value="rice-pepper">Rice &amp; Pepper</option>
+          <option value="oil-rice">Oil Rice</option>
+          <option value="special-combo">Special Combo</option>
+        </select>
+  
+        <!-- Portion Type Selection -->
+        <label for="portion">Portion Type</label>
+        <select id="portion" required>
+          <option value="">-- Select Portion Type --</option>
+          <option value="individual">Individual (80–90 cedis)</option>
+          <option value="bulk">Bulk Package (300 cedis)</option>
+        </select>
+  
+        <label for="date">Delivery Date <small>(Order one day in advance)</small></label>
+        <input type="date" id="date" required />
+  
+        <label for="time">Preferred Delivery Time</label>
+        <select id="time" required>
+          <option value="">-- Choose a Time Slot --</option>
+          <option value="11am-1pm">11 AM - 1 PM</option>
+          <option value="1pm-3pm">1 PM - 3 PM</option>
+          <option value="3pm-5pm">3 PM - 5 PM</option>
+        </select>
+  
+        <label for="instructions">Special Instructions</label>
+        <textarea id="instructions" rows="3" placeholder="Any dietary preferences or requests?"></textarea>
+  
+        <!-- Payment Button -->
+        <button type="button" id="paystack-button">Pay &amp; Confirm Order <i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- ========= Contact Section ========= -->
   <section class="contact" id="contact">
     <h2 class="section-title animate__animated animate__fadeInDown">Get in Touch</h2>
     <div class="contact-container animate__animated animate__fadeInUp">
       <div class="contact-info">
         <h3>Contact Info</h3>
         <p><i class="fas fa-phone"></i> +123 456 7890</p>
-        <p><i class="fas fa-envelope"></i> info@chiccohair.com</p>
-        <p><i class="fas fa-map-marker-alt"></i> 456 Style Avenue, Trend City</p>
+        <p><i class="fas fa-envelope"></i> info@deliciousbites.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Flavor Town</p>
       </div>
       <div class="contact-form">
         <h3>Send Us a Message</h3>
@@ -502,22 +765,214 @@
           <input type="text" id="contactName" name="contactName" placeholder="Your Name" required />
           <label for="contactEmail">Your Email</label>
           <input type="email" id="contactEmail" name="contactEmail" placeholder="you@example.com" required />
-          <label for="contactMessage">Message</label>
-          <textarea id="contactMessage" name="contactMessage" rows="4" placeholder="Your Message" required></textarea>
+          <label for="contactMessage">Your Message</label>
+          <textarea id="contactMessage" name="contactMessage" rows="4" placeholder="Type your message here..." required></textarea>
           <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
         </form>
       </div>
     </div>
+    <div class="social animate__animated animate__bounceIn" style="margin-top:20px;">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
   </section>
   
-  <!-- Footer -->
+  <!-- ========= Footer ========= -->
   <footer class="animate__animated animate__fadeInUp">
-    <p>&copy; 2025 Chic &amp; Co. Hair &amp; Wig Studio. All Rights Reserved.</p>
+    <p>&copy; 2025 Delicious Bites. All Rights Reserved.</p>
+    <p>Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> by Delicious Bites Team</p>
     <div class="social">
       <a href="#"><i class="fab fa-facebook-f"></i></a>
       <a href="#"><i class="fab fa-twitter"></i></a>
       <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
+  
+  <!-- ========= (Optional) Modals for Dish Details ========= -->
+  <!-- Jollof Rice Modal -->
+  <div class="modal" id="modal-jollof">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <span class="close" onclick="closeModal('modal-jollof')">&times;</span>
+      <h3>Jollof Rice Details</h3>
+      <p>Our signature Jollof Rice is a rich blend of parboiled rice, fresh tomatoes, and a mix of spices. Slow‑cooked to perfection, it’s served with your choice of protein, crispy fried plantains, and a refreshing salad.</p>
+      <p><strong>Ingredients:</strong> Rice, tomatoes, red bell peppers, onions, garlic, thyme, bay leaves, and chicken or fish.</p>
+    </div>
+  </div>
+  <!-- Rice & Pepper Modal -->
+  <div class="modal" id="modal-rice-pepper">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <span class="close" onclick="closeModal('modal-rice-pepper')">&times;</span>
+      <h3>Rice &amp; Pepper Details</h3>
+      <p>This dish features perfectly cooked rice tossed with a vibrant blend of peppers and spices. Fiery yet balanced, it's a must‑try for spice lovers.</p>
+      <p><strong>Ingredients:</strong> Rice, Scotch bonnet peppers, red bell peppers, onions, garlic, and traditional spices.</p>
+    </div>
+  </div>
+  <!-- Oil Rice Modal -->
+  <div class="modal" id="modal-oil-rice">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <span class="close" onclick="closeModal('modal-oil-rice')">&times;</span>
+      <h3>Oil Rice Details</h3>
+      <p>Oil Rice is a comforting dish featuring rice simmered in palm oil with aromatic spices. It’s a soulful meal that warms you from within.</p>
+      <p><strong>Ingredients:</strong> Rice, palm oil, onions, garlic, and a hint of ginger.</p>
+    </div>
+  </div>
+  <!-- Special Combo Modal -->
+  <div class="modal" id="modal-special-combo">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <span class="close" onclick="closeModal('modal-special-combo')">&times;</span>
+      <h3>Special Combo Details</h3>
+      <p>Our Special Combo offers a curated selection of our finest dishes. Enjoy a medley of flavors in one ultimate feast.</p>
+      <p><strong>Ingredients:</strong> A combination of our best ingredients, perfectly balanced for a delightful taste.</p>
+    </div>
+  </div>
+  
+  <!-- ========= (Optional) Payment Confirmation Modal - Not used due to redirection ========= -->
+  <div class="modal" id="paymentModal">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <h3>Payment Successful!</h3>
+      <p>Your order has been confirmed. Thank you for choosing Delicious Bites!</p>
+      <button onclick="closePaymentModal()">Close</button>
+    </div>
+  </div>
+  
+  <!-- ========= JavaScript Functions ========= -->
+  <script>
+    // OPTIONAL: Scroll to top on page load (already in window.onload)
+    
+    // Initialize EmailJS when DOM is loaded (see above)
+    
+    // Payment integration with Paystack, EmailJS, and FormSubmit
+    function initiatePayment() {
+      const form = document.getElementById('preorderForm');
+      if (!form.checkValidity()) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+      console.log("Payment function triggered");
+      const dish = document.getElementById('dish').value;
+      if (!dish) {
+        alert("Please select a dish.");
+        return;
+      }
+      // Get portion type: "individual" or "bulk"
+      const portion = document.getElementById('portion').value;
+      let price = dishPrices[dish];
+      if (portion === "bulk") { price = 300; }
+      const amount = price * 100; // convert to pesewas
+
+      let handler = PaystackPop.setup({
+        key: 'pk_test_297586e51710e83d3c159bfe71ff45c7e23411fa', // Replace with your Paystack test key
+        email: document.getElementById('email').value,
+        amount: amount,
+        currency: "GHS",
+        ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+        onClose: function() { alert('Payment cancelled.'); },
+        callback: function(response) {
+          console.log("Payment successful", response);
+          sendEmail();
+          submitFormData();
+          // Redirect to success page
+          window.location.href = 'success.html';
+          form.reset();
+        }
+      });
+      handler.openIframe();
+    }
+
+    // Send email using EmailJS
+    function sendEmail() {
+      const templateParams = {
+        from_name: document.getElementById('name').value,
+        to_email: document.getElementById('email').value,
+        dish: document.getElementById('dish').value,
+        portion: document.getElementById('portion').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        delivery_date: document.getElementById('date').value,
+        delivery_time: document.getElementById('time').value,
+        instructions: document.getElementById('instructions').value
+      };
+      emailjs.send('service_oc02wjy', 'template_caampzn', templateParams)
+        .then(function(response) {
+          console.log('EmailJS SUCCESS!', response.status, response.text);
+        }, function(error) {
+          console.log('EmailJS FAILED...', error);
+        });
+    }
+
+    // Submit form data using FormSubmit via fetch
+    function submitFormData() {
+      const form = document.getElementById("preorderForm");
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Form submitted successfully");
+        } else {
+          throw new Error("Form submission failed.");
+        }
+      })
+      .catch(error => {
+        console.error("Form submission error:", error);
+        alert("There was an error processing your order. Please try again.");
+      });
+    }
+
+    // Basic form validation
+    function validateForm() {
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const address = document.getElementById("address");
+      const dish = document.getElementById("dish");
+      const portion = document.getElementById("portion");
+      const date = document.getElementById("date");
+      const time = document.getElementById("time");
+
+      let isValid = true;
+      let errorMessages = [];
+
+      if (!/^\S+\s+\S+/.test(name.value.trim())) {
+        errorMessages.push("Please enter your FULL NAME (first and last).");
+        isValid = false;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        errorMessages.push("Please enter a valid email address.");
+        isValid = false;
+      }
+      if (!/^\d{10}$/.test(phone.value.trim())) {
+        errorMessages.push("Please enter a valid 10-digit phone number.");
+        isValid = false;
+      }
+      if (address.value.trim() === "") {
+        errorMessages.push("Please enter your residential address.");
+        isValid = false;
+      }
+      if (!dish.value) {
+        errorMessages.push("Please select a dish.");
+        isValid = false;
+      }
+      if (!portion.value) {
+        errorMessages.push("Please select a portion type.");
+        isValid = false;
+      }
+      if (!isValid) {
+        alert("⚠️ Please fix the following errors before proceeding:\n\n" + errorMessages.join("\n"));
+      }
+      return isValid;
+    }
+
+    // (Optional) Modal functions for dish details
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+  </script>
 </body>
 </html>
