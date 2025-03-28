@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chic &amp; Co. Hair &amp; Wig Studio</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Base Reset and Global Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    
+    /* Color Palette & Typography */
+    :root {
+      --primary-color: #B22222;
+      --accent-color: #FFD700;
+      --dark-bg: #1a1a1a;
+      --light-bg: #fff;
+      --serif-font: 'Playfair Display', serif;
+    }
+    
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--dark-bg);
+      padding: 15px 40px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-family: var(--serif-font);
+      font-size: 1.8em;
+      color: var(--accent-color);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #fff;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: var(--accent-color); }
+    @media (max-width: 768px) {
+      nav { padding: 10px 20px; flex-wrap: wrap; }
+      nav ul { width: 100%; justify-content: center; margin-top: 10px; }
+    }
+    
+    /* Hero Section – Fullscreen Background */
+    .hero {
+      height: 100vh;
+      background: url('herowig.jpg') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-content h1 {
+      font-family: var(--serif-font);
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+    .hero-content p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    .hero-content .btn {
+      background: var(--accent-color);
+      color: var(--primary-color);
+      padding: 12px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .hero-content .btn:hover { transform: scale(1.05); }
+    
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      width: 80px;
+      height: 4px;
+      background: var(--accent-color);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+    
+    /* About Section */
+    .about { padding: 60px 20px; background: var(--light-bg); }
+    .about-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-text {
+      flex: 1 1 500px;
+    }
+    .about-text h2 { font-size: 2.2em; margin-bottom: 15px; color: var(--primary-color); }
+    .about-text p { font-size: 1.1em; text-align: justify; margin-bottom: 10px; }
+    .about-image { flex: 1 1 400px; }
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    
+    /* Services Section */
+    .services { padding: 60px 20px; background: #fafafa; }
+    .services-container {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .service-item {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .service-item:hover { transform: translateY(-5px); }
+    .service-item i {
+      font-size: 3em;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+    }
+    .service-item h3 {
+      font-size: 1.4em;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    .service-item p { font-size: 1em; color: #666; }
+    
+    /* Wig Boutique Section */
+    .wig-shop { padding: 60px 20px; background: var(--light-bg); }
+    .wig-shop h2 { text-align: center; margin-bottom: 40px; color: var(--primary-color); }
+    .wig-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .wig-item {
+      background: var(--light-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+    .wig-item:hover { transform: translateY(-5px); }
+    .wig-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .wig-item h3 { font-size: 1.3em; color: var(--primary-color); margin-bottom: 10px; }
+    .wig-item p { font-size: 1em; margin-bottom: 10px; color: #666; }
+    .wig-item .price { font-size: 1.1em; font-weight: bold; margin-bottom: 15px; }
+    .wig-item .btn {
+      background: var(--primary-color);
+      color: var(--accent-color);
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .wig-item .btn:hover { background: #8a1616; }
+    
+    /* Appointment Section */
+    .appointment { padding: 60px 20px; background: #f9f9f9; }
+    .appointment h2 { text-align: center; margin-bottom: 40px; color: var(--primary-color); }
+    .appointment-form {
+      max-width: 600px;
+      margin: auto;
+      background: var(--light-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .appointment-form label { display: block; margin-bottom: 5px; font-weight: 700; }
+    .appointment-form input,
+    .appointment-form select,
+    .appointment-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    .appointment-form button {
+      width: 100%;
+      background: var(--primary-color);
+      color: var(--accent-color);
+      padding: 15px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .appointment-form button:hover { background: #8a1616; }
+    
+    /* Contact Section */
+    .contact { padding: 60px 20px; background: var(--light-bg); }
+    .contact h2 { text-align: center; margin-bottom: 40px; color: var(--primary-color); }
+    .contact-container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .contact-info, .contact-form {
+      flex: 1 1 350px;
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .contact-info h3, .contact-form h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.8em;
+    }
+    .contact-info p { font-size: 1.1em; margin-bottom: 10px; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 1em;
+    }
+    .contact-form button {
+      padding: 12px 20px;
+      background: var(--primary-color);
+      color: var(--accent-color);
+      border: none;
+      border-radius: 50px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover { background: #8a1616; }
+    
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    footer a {
+      color: var(--accent-color);
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    footer a:hover { color: #e6c200; }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .about-container, .contact-container { flex-direction: column; text-align: center; }
+    }
+  </style>
+  <script>
+    // Optional: Smooth scroll via JS for older browsers (CSS scroll-behavior works in modern browsers)
+    document.addEventListener("DOMContentLoaded", function() {
+      const navLinks = document.querySelectorAll("nav ul li a");
+      navLinks.forEach(link => {
+        link.addEventListener("click", function(e) {
+          if (this.hash) {
+            e.preventDefault();
+            document.querySelector(this.hash).scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="animate__animated animate__fadeInDown">
+    <div class="logo animate__animated animate__bounceInLeft">
+      <i class="fas fa-cut"></i> Chic &amp; Co.
+    </div>
+    <ul>
+      <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="#services"><i class="fas fa-scissors"></i> Services</a></li>
+      <li><a href="#wigshop"><i class="fas fa-shopping-bag"></i> Wig Shop</a></li>
+      <li><a href="#appointment"><i class="fas fa-calendar-check"></i> Book Appointment</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content animate__animated animate__fadeInUp">
+      <h1 class="animate__animated animate__jackInTheBox">Experience the Art of Hair</h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">
+        Discover innovative styles, luxurious wigs, and expert care at Chic &amp; Co. Transform your look and embrace elegance.
+      </p>
+      <button class="btn animate__animated animate__pulse animate__infinite" 
+              onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' });">
+        Explore Our Services <i class="fas fa-arrow-down"></i>
+      </button>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-container animate__animated animate__fadeInUp">
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <p>
+          At Chic &amp; Co., every hairstyle is crafted with passion and precision. Our expert stylists blend classic techniques with modern trends to create looks that empower and inspire. We believe that great hair is not just a style—it’s a statement of confidence and individuality.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="salon.jpg" alt="Salon Interior" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h2 class="section-title animate__animated animate__fadeInDown">Our Services</h2>
+    <div class="services-container animate__animated animate__fadeInUp">
+      <div class="service-item">
+        <i class="fas fa-cut"></i>
+        <h3>Haircut &amp; Styling</h3>
+        <p>Customized cuts and styles that perfectly frame your features.</p>
+      </div>
+      <div class="service-item">
+        <i class="fas fa-wind"></i>
+        <h3>Blow Dry &amp; Finish</h3>
+        <p>Sleek, polished finishes to complement any look.</p>
+      </div>
+      <div class="service-item">
+        <i class="fas fa-paint-brush"></i>
+        <h3>Color &amp; Highlights</h3>
+        <p>Expert color treatments to add vibrancy and depth.</p>
+      </div>
+      <div class="service-item">
+        <i class="fas fa-water"></i>
+        <h3>Deep Conditioning</h3>
+        <p>Nourishing treatments for revitalized, healthy hair.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Wig Shop Section -->
+  <section class="wig-shop" id="wigshop">
+    <h2 class="section-title animate__animated animate__fadeInDown">Wig Boutique</h2>
+    <div class="wig-container animate__animated animate__fadeInUp">
+      <!-- Wig Item 1 -->
+      <div class="wig-item">
+        <img src="wig1.jpg" alt="Wig Style 1" />
+        <h3>Sleek Bob</h3>
+        <p>Elegant and modern for a chic everyday look.</p>
+        <div class="price">GHS 250</div>
+        <button class="btn">Buy Now</button>
+      </div>
+      <!-- Wig Item 2 -->
+      <div class="wig-item">
+        <img src="wig2.jpg" alt="Wig Style 2" />
+        <h3>Curly Glam</h3>
+        <p>Vibrant curls that exude confidence and style.</p>
+        <div class="price">GHS 300</div>
+        <button class="btn">Buy Now</button>
+      </div>
+      <!-- Wig Item 3 -->
+      <div class="wig-item">
+        <img src="wig3.jpg" alt="Wig Style 3" />
+        <h3>Natural Wave</h3>
+        <p>Soft, natural waves for an effortlessly chic look.</p>
+        <div class="price">GHS 275</div>
+        <button class="btn">Buy Now</button>
+      </div>
+      <!-- Wig Item 4 -->
+      <div class="wig-item">
+        <img src="wig4.jpg" alt="Wig Style 4" />
+        <h3>Elegant Updo</h3>
+        <p>Classic updos perfect for formal events and celebrations.</p>
+        <div class="price">GHS 320</div>
+        <button class="btn">Buy Now</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Appointment Section -->
+  <section class="appointment" id="appointment">
+    <h2 class="section-title animate__animated animate__fadeInDown">Book an Appointment</h2>
+    <div class="appointment-form animate__animated animate__fadeInUp">
+      <form action="YOUR_FORMSUB_ENDPOINT_FOR_APPOINTMENTS" method="POST">
+        <label for="appointName">Full Name</label>
+        <input type="text" id="appointName" name="appointName" placeholder="Your Full Name" required />
+        
+        <label for="appointEmail">Email Address</label>
+        <input type="email" id="appointEmail" name="appointEmail" placeholder="you@example.com" required />
+        
+        <label for="appointPhone">Phone Number</label>
+        <input type="tel" id="appointPhone" name="appointPhone" placeholder="e.g., +123456789" required />
+        
+        <label for="appointDate">Preferred Date</label>
+        <input type="date" id="appointDate" name="appointDate" required />
+        
+        <label for="appointTime">Preferred Time</label>
+        <select id="appointTime" name="appointTime" required>
+          <option value="">-- Select Time Slot --</option>
+          <option value="09:00">09:00 AM</option>
+          <option value="11:00">11:00 AM</option>
+          <option value="14:00">02:00 PM</option>
+          <option value="16:00">04:00 PM</option>
+        </select>
+        
+        <label for="servicesRequired">Services Required</label>
+        <textarea id="servicesRequired" name="servicesRequired" rows="3" placeholder="Tell us what you need..." required></textarea>
+        
+        <button type="submit">Book Now <i class="fas fa-calendar-check"></i></button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2 class="section-title animate__animated animate__fadeInDown">Get in Touch</h2>
+    <div class="contact-container animate__animated animate__fadeInUp">
+      <div class="contact-info">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-phone"></i> +123 456 7890</p>
+        <p><i class="fas fa-envelope"></i> info@chiccohair.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> 456 Style Avenue, Trend City</p>
+      </div>
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form action="YOUR_FORMSUB_ENDPOINT_FOR_CONTACT" method="POST">
+          <label for="contactName">Your Name</label>
+          <input type="text" id="contactName" name="contactName" placeholder="Your Name" required />
+          <label for="contactEmail">Your Email</label>
+          <input type="email" id="contactEmail" name="contactEmail" placeholder="you@example.com" required />
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" name="contactMessage" rows="4" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="animate__animated animate__fadeInUp">
+    <p>&copy; 2025 Chic &amp; Co. Hair &amp; Wig Studio. All Rights Reserved.</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+</body>
+</html>
